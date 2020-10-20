@@ -16,19 +16,14 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route path="/projects"><ProjectPage /></Route>
+          <Route path="/projects/:id"><ProjectPage /></Route> 
           <Route path="/users"><UserPage /></Route>
           <Route path="/"><HomePage /></Route> 
-          {/* Put the home page at the end, otherwise the links do not quite work */}
+          {/* ---->>>> Put the home page at the end, otherwise the links do not quite work */}
         </Switch>
       </div>
     </Router>
-
-
-
-
   );
-
 }
 
 export default App;

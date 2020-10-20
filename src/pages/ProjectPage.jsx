@@ -1,25 +1,53 @@
-import React from 'react';
-import { oneProject } from "../data";
+import React,  { useState, useEffect } from 'react';
+// import { oneProject } from "../data";
+import { useParams } from "react-router-dom" 
+// the above allows us to dynamically set the url 
 import ProjectCard from "../components/ProjectCard/ProjectCard"
 
 function ProjectPage() {
-    return (
-        <div className="single-project">
-            <h2>{oneProject.title}</h2>
-            <h3>Created at {oneProject.date_created}</h3>
-            <h3>{`Status: ${oneProject.is_open}`}</h3> 
-            {/* using ` to covert is_open from boolean to string - $ indicates that this is a variable */}
-            <h3>Pledges: </h3>
-            <ul>
-                {oneProject.pledges.map((pledgeData, key) => {
-                    return (
-                        <li>
-                            {pledgeData.amount}
-                        </li>
+    const [projectData, setProjectData] = useState ({ pledges: [] });
+    const { id } = useParams(); 
 
-                    )
-                })}
-            </ul>
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`)
+        .then((results) => {
+            return results.json();
+        })
+        .then((data) => {
+            setProjectData(data)
+        });
+    }, []);
+
+
+
+    return (
+        // 20/10: single-project related CSS currently lives in project-card.css
+        <div className="single-project">
+            <div className="single-project-box">
+                <h2>{projectData.title}</h2>
+                <img src={projectData.image}/>
+            </div>
+            
+            <div className="single-project-box">
+                <h3>Description: {projectData.description}</h3>
+                <h3>Country: {projectData.country}</h3>
+                <h3>Goal: ${projectData.goal}</h3>
+                <h3>{`Status: ${projectData.is_open}`}</h3> 
+                {/* using ` to convert is_open from boolean to string - $ indicates that this is a variable */}
+                <h3>Created at: {projectData.date_created}</h3>
+                <h3>Total Amount Raised: ${projectData.amount_raised}</h3> 
+                <h3>Pledges: </h3>
+                <ul>
+                    {projectData.pledges.map((pledgeData, key) => {
+                        return (
+                            <li>
+                                Pledged Amount: ${pledgeData.amount} - from Supporter: {pledgeData.supporter}
+                            </li>
+
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
 
     );
