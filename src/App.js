@@ -6,7 +6,9 @@ import Title from "./components/Title/Title";
 import HomePage from "./pages/HomePage";
 import ProjectPage from "./pages/ProjectPage";
 import UserPage from "./pages/UserPage";
+import LoginPage from "./pages/LoginPage";
 import './App.css';
+import NewProjectPage from './pages/NewProjectPage';
 
 function App() {
   return(
@@ -17,7 +19,9 @@ function App() {
         <Nav />
         <Switch>
           <Route path="/projects/:id"><ProjectPage /></Route> 
-          <Route path="/users"><UserPage /></Route>
+          <Route path="/login"><LoginPage /></Route>
+          <Route path="/createproject"><NewProjectPage /></Route>
+          <Route path="/users/:id"><UserPage /></Route>
           <Route path="/"><HomePage /></Route> 
           {/* ---->>>> Put the home page at the end, otherwise the links do not quite work */}
         </Switch>
