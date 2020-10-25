@@ -15,8 +15,10 @@ function App() {
     
     <Router>
       <Title />
+      {/* <Nav /> The nav is now within the Title component  */}
+      
       <div>
-        <Nav />
+        
         <Switch>
           <Route path="/projects/:id"><ProjectPage /></Route> 
           <Route path="/login"><LoginPage /></Route>
