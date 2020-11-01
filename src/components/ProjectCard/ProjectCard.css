@@ -29,6 +29,32 @@
  
 }
 
+.inner-link{
+    color: #1e90ff;
+    font-weight: bold;   
+    text-decoration: none;
+    text-align: center;
+    padding: 1%;
+    border-style: solid;
+    border-radius: 6px;
+    border-color:#2F4F4F;
+    margin-right: 5px;
+    /* padding: 5px;
+    display: block;
+    padding-right:20px;  */
+
+}
+
+
+.inner-link:hover {
+    color: #191970;
+    text-decoration: underline;
+ 
+}
+
+
+
+
 .single-project{
     color:#2F4F4F;
     margin: 10px;

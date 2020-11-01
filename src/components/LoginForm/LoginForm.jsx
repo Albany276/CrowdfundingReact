@@ -39,7 +39,7 @@ function LoginForm(){
                 // if username and password are correct as per the database, then the response will have the auth token
                 //if the username and password are not correct as per the database, then the response will not have a token and we will print a window alert
                 if (response.token){
-                    window.localStorage.setItem("token", response.token);
+                    window.sessionStorage.setItem("token", response.token);
                     // const aux = "User logged in"
                     history.push("/");
 

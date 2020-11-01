@@ -1,8 +1,9 @@
 import React,  { useState, useEffect } from 'react';
 // import { oneProject } from "../data";
-import { useParams } from "react-router-dom" 
+import { useParams } from "react-router-dom" ;
+import { Link } from 'react-router-dom';
 // the above allows us to dynamically set the url 
-import ProjectCard from "../components/ProjectCard/ProjectCard"
+import ProjectCard from "../components/ProjectCard/ProjectCard";
 
 function ProjectPage() {
     const [projectData, setProjectData] = useState ({ pledges: [] });
@@ -26,9 +27,16 @@ function ProjectPage() {
             <div className="single-project-box">
                 <h2>{projectData.title}</h2>
                 <img src={projectData.image}/>
+                <h3></h3>
+                <Link className="inner-link" to={`/update/${projectData.id}`}>Update Project</Link>
+                <Link className="inner-link" to="/">Pledge to Project</Link>
+                {/* <Link to={`/users/${user.id}`} activeClassName="current">{user.name}</Link> */}
+
             </div>
             
             <div className="single-project-box">
+                <h3>id: {projectData.id}</h3>
+                <h3>Owner: {projectData.owner}</h3>
                 <h3>Description: {projectData.description}</h3>
                 <h3>Country: {projectData.country}</h3>
                 <h3>Goal: ${projectData.goal}</h3>

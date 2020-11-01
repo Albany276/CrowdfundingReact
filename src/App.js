@@ -5,10 +5,12 @@ import Nav from "./components/Nav/Nav";
 import Title from "./components/Title/Title";
 import HomePage from "./pages/HomePage";
 import ProjectPage from "./pages/ProjectPage";
+import UpdateProjectPage from "./pages/UpdateProjectPage";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import './App.css';
 import NewProjectPage from './pages/NewProjectPage';
+import LogoutPage from './pages/LogoutPage';
 
 function App() {
   return(
@@ -21,7 +23,9 @@ function App() {
         
         <Switch>
           <Route path="/projects/:id"><ProjectPage /></Route> 
+          <Route path="/update/:id"><UpdateProjectPage /></Route> 
           <Route path="/login"><LoginPage /></Route>
+          <Route path="/logout"><LogoutPage /></Route>
           <Route path="/createproject"><NewProjectPage /></Route>
           <Route path="/users/:id"><UserPage /></Route>
           <Route path="/"><HomePage /></Route> 

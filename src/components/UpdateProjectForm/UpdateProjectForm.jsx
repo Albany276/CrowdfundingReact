@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-// 24/10: starting project form to create a new project
+// 01/11: update project
 
-function ProjectForm(){
+function UpdateProjectForm(){
     const [info, setInfo] = useState({
         title: "",
         description: "",
@@ -140,4 +140,4 @@ function ProjectForm(){
     )
 }
 
-export default ProjectForm
+export default UpdateProjectForm;
