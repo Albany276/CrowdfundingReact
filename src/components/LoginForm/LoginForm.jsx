@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import "./LoginForm.css";
 
 function LoginForm(){
     const [credentials, setCredentials] = useState({
@@ -58,7 +59,7 @@ function LoginForm(){
 
     return (
         <form>
-            <div>
+            <div class="logform-item">
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -67,7 +68,7 @@ function LoginForm(){
                     onChange={handleChange}
                 />
             </div>
-            <div>
+            <div class="logform-item">
                 <label htmlFor="password">Password:</label>
                 <input
                     type="password"
@@ -76,9 +77,11 @@ function LoginForm(){
                     onChange={handleChange}
                 />
             </div>
-            <button type="submit" onClick={handleSubmit}>
-                Login
-            </button>
+            <div class="logform-item">
+                <button type="submit" onClick={handleSubmit}>
+                    Login
+                </button>
+            </div>
         </form>
 
     )

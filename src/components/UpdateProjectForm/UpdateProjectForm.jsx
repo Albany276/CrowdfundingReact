@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import "./UpdateProjectForm.css"
 
 // 01/11: update project
 
 function UpdateProjectForm(props){
     const { id } = props;
+    const history = useHistory();
 
     const [projectData, setProjectData] = useState({});
 
@@ -50,15 +52,28 @@ function UpdateProjectForm(props){
             return response.json();       
     }
 
-    // the below checks that both a username and password have been entered in the front end
-    // before contacting the backend
+    
     const handleSubmit = (e) => {
         e.preventDefault(); 
         putData().then((response) => {
-                console.log(response)
-               
+            console.log(response)
+
+            
+            if (response.detail == "You do not have permission to perform this action."){
+                window.alert(response.detail)
+            }
+
+            else {
+        // history.push will redirect to project page
+                 history.push(`/projects/${id}`);
+            }
+
+
+
                 }
             );
+
+        
         
         // if (info.title && info.description && info.goal){
         //     putData().then((response) => {
@@ -72,9 +87,9 @@ function UpdateProjectForm(props){
 
     return (
         <form>
-            <div>
-                <h1>ID is:{id}</h1>
-                <h2>What project fields do you want to update?</h2>
+            <h2>What project fields do you want to update?</h2>
+            <div class="form-item">              
+                
                 <label htmlFor="title">Project Title:</label>
                 <input
                     type="text"
@@ -83,8 +98,8 @@ function UpdateProjectForm(props){
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label htmlFor="description">Descritpion:</label>
+            <div class="form-item">
+                <label htmlFor="description">Description:</label>
                 <input
                     type="text"
                     id="description"
@@ -93,7 +108,7 @@ function UpdateProjectForm(props){
                 />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label htmlFor="goal">Goal:</label>
                 <input
                     type="integer"
@@ -102,7 +117,7 @@ function UpdateProjectForm(props){
                     onChange={handleChange}
                 />
             </div>
-            <div>
+            <div class="form-item">
                 <label htmlFor="is_open">Is the Project open?:</label>
                 <input
                     type="boolean"
@@ -111,7 +126,7 @@ function UpdateProjectForm(props){
                     onChange={handleChange}
                 />
             </div>
-            <div>
+            <div class="form-item">
                 <label htmlFor="image">Enter an image for your project:</label>
                 <input
                     type="URL"
@@ -121,7 +136,7 @@ function UpdateProjectForm(props){
                 />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label htmlFor="country">Which Country is the project at?</label>
                 <input
                     type="text"
@@ -142,10 +157,11 @@ function UpdateProjectForm(props){
             </div> */}
 
 
-
-            <button type="submit" onClick={handleSubmit}>
-                Update project
-            </button>
+            <div class="form-item">   
+                <button type="submit" onClick={handleSubmit}>
+                    Update project
+                </button>
+            </div>
         </form>
 
     )

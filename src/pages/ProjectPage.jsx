@@ -28,10 +28,11 @@ function ProjectPage() {
                 <h2>{projectData.title}</h2>
                 <img src={projectData.image}/>
                 <h3></h3>
-                <Link className="inner-link" to={`/update/${projectData.id}`}>Update Project</Link>
-                <Link className="inner-link" to="/">Pledge to Project</Link>
-                {/* <Link to={`/users/${user.id}`} activeClassName="current">{user.name}</Link> */}
-
+                <div className="inner-link-box">
+                    <Link className="inner-link" to={`/update/${projectData.id}`}>Update Project</Link>
+                    <Link className="inner-link" to="/">Pledge to Project</Link>
+                    {/* <Link to={`/users/${user.id}`} activeClassName="current">{user.name}</Link> */}
+                </div>
             </div>
             
             <div className="single-project-box">

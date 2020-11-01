@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import "../UpdateProjectForm/UpdateProjectForm.css"
+
 
 // 24/10: starting project form to create a new project
 
@@ -63,7 +65,7 @@ function ProjectForm(){
 
     return (
         <form>
-            <div>
+            <div class="form-item">
                 <label htmlFor="title">Project Title:</label>
                 <input
                     type="text"
@@ -72,8 +74,8 @@ function ProjectForm(){
                     onChange={handleChange}
                 />
             </div>
-            <div>
-                <label htmlFor="description">Descritpion:</label>
+            <div class="form-item">
+                <label htmlFor="description">Description:</label>
                 <input
                     type="text"
                     id="description"
@@ -82,7 +84,7 @@ function ProjectForm(){
                 />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label htmlFor="goal">Goal:</label>
                 <input
                     type="integer"
@@ -91,7 +93,7 @@ function ProjectForm(){
                     onChange={handleChange}
                 />
             </div>
-            <div>
+            <div class="form-item">
                 <label htmlFor="is_open">Is the Project open?:</label>
                 <input
                     type="boolean"
@@ -100,7 +102,7 @@ function ProjectForm(){
                     onChange={handleChange}
                 />
             </div>
-            <div>
+            <div class="form-item">
                 <label htmlFor="image">Enter an image for your project:</label>
                 <input
                     type="URL"
@@ -110,7 +112,7 @@ function ProjectForm(){
                 />
             </div>
 
-            <div>
+            <div class="form-item">
                 <label htmlFor="country">Which Country is the project at?</label>
                 <input
                     type="text"
@@ -131,10 +133,11 @@ function ProjectForm(){
             </div> */}
 
 
-
-            <button type="submit" onClick={handleSubmit}>
-                Create Project
-            </button>
+            <div class="form-item">
+                <button type="submit" onClick={handleSubmit}>
+                    Create Project
+                </button>
+            </div>
         </form>
 
     )

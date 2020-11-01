@@ -9,7 +9,7 @@ function UpdateProjectPage() {
 
     return(
         <div>
-        <h1>{id}</h1>
+        {/* <h1>{id}</h1> */}
         <UpdateProjectForm id={id}/>
         </div>
 

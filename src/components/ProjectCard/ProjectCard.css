@@ -29,7 +29,12 @@
  
 }
 
+.inner-link-box{
+    display: flex;
+}
+
 .inner-link{
+
     color: #1e90ff;
     font-weight: bold;   
     text-decoration: none;
@@ -38,7 +43,7 @@
     border-style: solid;
     border-radius: 6px;
     border-color:#2F4F4F;
-    margin-right: 5px;
+    margin: 3px;
     /* padding: 5px;
     display: block;
     padding-right:20px;  */
@@ -70,6 +75,7 @@
 
 
 .single-project-box{
+    
     color:#2F4F4F;
     margin: 10px;
     padding: 10px;
