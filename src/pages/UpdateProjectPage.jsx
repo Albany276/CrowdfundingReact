@@ -4,15 +4,22 @@ import { useParams } from "react-router-dom" ;
 
 function UpdateProjectPage() {
 
-    // return(
-    //     <h1>TEST</h1>
-    // )
-
     const { id } = useParams();
 
-    return (
-    <h1>{projectData.title}</h1>
+
+    return(
+        <div>
+        <h1>{id}</h1>
+        <UpdateProjectForm id={id}/>
+        </div>
+
     )
+
+
+    // return (
+    // <h1>{projectData.title}</h1>
+    // 01/11 - project data not working
+    // )
 
 }
 

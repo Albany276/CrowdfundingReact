@@ -3,46 +3,49 @@ import { useHistory } from 'react-router-dom';
 
 // 01/11: update project
 
-function UpdateProjectForm(){
-    const [info, setInfo] = useState({
-        title: "",
-        description: "",
-        goal: "",
-        image: "", 
-        is_open: "",
-        country:"", 
-        date_created: "2020-10-02T20:36:23.382748Z",     
-        // 25/10: forcing date - having problem with format if created as label in the form - need to figure it out later on
-    });
-    const history = useHistory();
+function UpdateProjectForm(props){
+    const { id } = props;
+
+    const [projectData, setProjectData] = useState({});
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`)
+        .then((results) => {
+            return results.json();
+        })
+        .then((data) => {
+            setProjectData(data)
+        });
+    }, []);
+
 
     const handleChange =(e) => {
         const { id,value } = e.target;
-        setInfo((prevInfo) => ({
-            ...prevInfo,
+        setProjectData((prevProjectData) => ({
+            ...prevProjectData,
             [id]: value,
         }))
     };
 
 
-    const postData = async() => {
+    const putData = async() => {
         const token =  window.sessionStorage.getItem("token");
-        // the below if will return an error if no token is passed - only logged in users can create projects
+       
 
         if (!token){
-            window.alert("You need to be logged in  to create a project")
+            window.alert("You need to be logged in to update a project")
             return
         }
 
         const response = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/`,{
-            method: "post",
+            `${process.env.REACT_APP_API_URL}/projects/${id}`,{
+            method: "put",
             // the headers pass info to the request
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Token ${token}`
             },
-            body: JSON.stringify(info)
+            body: JSON.stringify(projectData)
             });
             return response.json();       
     }
@@ -51,24 +54,32 @@ function UpdateProjectForm(){
     // before contacting the backend
     const handleSubmit = (e) => {
         e.preventDefault(); 
-        if (info.title && info.description && info.goal){
-            postData().then((response) => {
+        putData().then((response) => {
                 console.log(response)
                
                 }
             );
-        };
+        
+        // if (info.title && info.description && info.goal){
+        //     putData().then((response) => {
+        //         console.log(response)
+               
+        //         }
+        //     );
+        // };
     };
 
 
     return (
         <form>
             <div>
+                <h1>ID is:{id}</h1>
+                <h2>What project fields do you want to update?</h2>
                 <label htmlFor="title">Project Title:</label>
                 <input
                     type="text"
                     id="title"
-                    placeholder="Enter title"
+                    placeholder={projectData.title}
                     onChange={handleChange}
                 />
             </div>
@@ -77,7 +88,7 @@ function UpdateProjectForm(){
                 <input
                     type="text"
                     id="description"
-                    placeholder="description"
+                    placeholder={projectData.description}
                     onChange={handleChange}
                 />
             </div>
@@ -87,7 +98,7 @@ function UpdateProjectForm(){
                 <input
                     type="integer"
                     id="goal"
-                    placeholder="goal"
+                    placeholder={projectData.goal}
                     onChange={handleChange}
                 />
             </div>
@@ -96,7 +107,7 @@ function UpdateProjectForm(){
                 <input
                     type="boolean"
                     id="is_open"
-                    placeholder="Enter 1 for open, 0 for closed"
+                    placeholder={projectData.is_open}
                     onChange={handleChange}
                 />
             </div>
@@ -105,7 +116,7 @@ function UpdateProjectForm(){
                 <input
                     type="URL"
                     id="image"
-                    placeholder="Enter image URL"
+                    placeholder={projectData.image}
                     onChange={handleChange}
                 />
             </div>
@@ -115,7 +126,7 @@ function UpdateProjectForm(){
                 <input
                     type="text"
                     id="country"
-                    placeholder="Enter country"
+                    placeholder={projectData.country}
                     onChange={handleChange}
                 />
             </div>
@@ -133,7 +144,7 @@ function UpdateProjectForm(){
 
 
             <button type="submit" onClick={handleSubmit}>
-                Create Project
+                Update project
             </button>
         </form>
 
