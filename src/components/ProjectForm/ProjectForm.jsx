@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import "../UpdateProjectForm/UpdateProjectForm.css"
-// both the project update and the project from (Create) components get the css from the same place
 
 
 // 24/10: starting project form to create a new project
@@ -61,7 +60,6 @@ function ProjectForm(){
                 }
             );
         };
-        history.push("/");
     };
 
 
