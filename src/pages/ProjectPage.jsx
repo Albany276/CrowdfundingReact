@@ -30,8 +30,9 @@ function ProjectPage() {
                 <h3></h3>
                 <div className="inner-link-box">
                     <Link className="inner-link" to={`/update/${projectData.id}`}>Update Project</Link>
-                    <Link className="inner-link" to="/">Pledge to Project</Link>
-                    {/* <Link to={`/users/${user.id}`} activeClassName="current">{user.name}</Link> */}
+                    <Link className="inner-link" to={`/pledge/${projectData.id}`}>Pledge to Project</Link>
+                    <Link className="inner-link" to={`/deleteproject/${projectData.id}`}>Delete Project</Link>
+                    
                 </div>
             </div>
             
@@ -50,7 +51,8 @@ function ProjectPage() {
                     {projectData.pledges.map((pledgeData, key) => {
                         return (
                             <li>
-                                Pledged Amount: ${pledgeData.amount} - from Supporter: {pledgeData.supporter}
+                                Pledged Amount: ${pledgeData.amount} 
+                                {/* - from Supporter: {pledgeData.supporter} */}
                             </li>
 
                         )

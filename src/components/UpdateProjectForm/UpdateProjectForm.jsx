@@ -49,7 +49,7 @@ function UpdateProjectForm(props){
             },
             body: JSON.stringify(projectData)
             });
-            return response.json();       
+            return response;       
     }
 
     
@@ -57,17 +57,19 @@ function UpdateProjectForm(props){
         e.preventDefault(); 
         putData().then((response) => {
             console.log(response)
+            console.log("status")
+            console.log(response.status)
 
+            if (response.status == 403) {
+                window.alert("You are not the owner of this project, so you can't update it")
+                history.push("/");         
+            }
             
-            if (response.detail == "You do not have permission to perform this action."){
-                window.alert(response.detail)
+            if (response.status == 200){
+                window.alert("Project updated successfully")
             }
 
-            else {
-        // history.push will redirect to project page
-                 history.push(`/projects/${id}`);
-            }
-
+            history.push(`/projects/${id}`);
 
 
                 }
@@ -75,13 +77,7 @@ function UpdateProjectForm(props){
 
         
         
-        // if (info.title && info.description && info.goal){
-        //     putData().then((response) => {
-        //         console.log(response)
-               
-        //         }
-        //     );
-        // };
+      
     };
 
 
